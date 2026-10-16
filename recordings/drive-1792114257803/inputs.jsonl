@@ -1,0 +1,233 @@
+{"epoch_ms":1792114257803,"elapsed_ms":0,"type":"start","state":{"running":true,"simulation_time_s":140.59950000002124,"segment":0,"keys_held":[],"actions":{"accelerate":false,"brake_reverse":false,"steering":0,"handbrake":false},"car":{"x":-977.9843119068129,"y":-927.433570550593,"a":-6.063072649433841,"vx":15.86342356226296,"vy":3.549230738053928,"steer":3.539332323043953e-8,"model":"THE DAILY"},"camera":{"x":-974.8530815030842,"y":-926.7449479581314,"zoom":0.875},"settings":{"traffic":true,"auto_accelerate":false},"viewport":{"width":1280,"height":665}}}
+{"epoch_ms":1792114258236.7,"elapsed_ms":433.69999999925494,"type":"keydown","key":"arrowup","code":"ArrowUp","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114258479.1,"elapsed_ms":676.0999999996275,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114258920,"elapsed_ms":1117,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114259087,"elapsed_ms":1284,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114259309.2,"elapsed_ms":1506.199999999255,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114260658.5,"elapsed_ms":2855.5,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114260679.2,"elapsed_ms":2876.199999999255,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114260960,"elapsed_ms":3157,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114261020.5,"elapsed_ms":3217.5,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114261141.4,"elapsed_ms":3338.4000000003725,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114261185,"elapsed_ms":3382,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114261341.2,"elapsed_ms":3538.199999999255,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114261403.1,"elapsed_ms":3600.0999999996275,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114262391.2,"elapsed_ms":4588.199999999255,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114262451.1,"elapsed_ms":4648.0999999996275,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114262837.1,"elapsed_ms":5034.0999999996275,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114262926,"elapsed_ms":5123,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114263116.3,"elapsed_ms":5313.300000000745,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114263233.4,"elapsed_ms":5430.4000000003725,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114263299.4,"elapsed_ms":5496.4000000003725,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114263325.1,"elapsed_ms":5522.0999999996275,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114264801.2,"elapsed_ms":6998.199999999255,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114264843.1,"elapsed_ms":7040.0999999996275,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114265267,"elapsed_ms":7464,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114265316.5,"elapsed_ms":7513.5,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114266477.2,"elapsed_ms":8674.199999999255,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114266591,"elapsed_ms":8788,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114266832.8,"elapsed_ms":9029.800000000745,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114266837,"elapsed_ms":9034,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114267195,"elapsed_ms":9392,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114267237,"elapsed_ms":9434,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114267529,"elapsed_ms":9726,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114267544,"elapsed_ms":9741,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114267732.7,"elapsed_ms":9929.699999999255,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114267760,"elapsed_ms":9957,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114268936.1,"elapsed_ms":11133.099999999627,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114269671,"elapsed_ms":11868,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114270957.6,"elapsed_ms":13154.599999999627,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114271133,"elapsed_ms":13330,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114271374.4,"elapsed_ms":13571.400000000373,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114271537.1,"elapsed_ms":13734.099999999627,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114273344.1,"elapsed_ms":15541.099999999627,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114273525.1,"elapsed_ms":15722.099999999627,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114274574.6,"elapsed_ms":16771.599999999627,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114274746,"elapsed_ms":16943,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114275757.8,"elapsed_ms":17954.800000000745,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114275757.8,"elapsed_ms":17954.800000000745,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114276295,"elapsed_ms":18492,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114276318,"elapsed_ms":18515,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114278292.1,"elapsed_ms":20489.099999999627,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114278349,"elapsed_ms":20546,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114278838.7,"elapsed_ms":21035.699999999255,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114278849.7,"elapsed_ms":21046.699999999255,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114279569.5,"elapsed_ms":21766.5,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114279721,"elapsed_ms":21918,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114280439.5,"elapsed_ms":22636.5,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114280486.2,"elapsed_ms":22683.199999999255,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114280835.6,"elapsed_ms":23032.599999999627,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114280954,"elapsed_ms":23151,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114281100.4,"elapsed_ms":23297.400000000373,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114281100.9,"elapsed_ms":23297.900000000373,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114281152,"elapsed_ms":23349,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114281175.8,"elapsed_ms":23372.800000000745,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114281320.2,"elapsed_ms":23517.199999999255,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114281337.6,"elapsed_ms":23534.599999999627,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114284474.9,"elapsed_ms":26671.900000000373,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114284633.5,"elapsed_ms":26830.5,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114285091.7,"elapsed_ms":27288.699999999255,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114285274.9,"elapsed_ms":27471.900000000373,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114285683.6,"elapsed_ms":27880.599999999627,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114285744,"elapsed_ms":27941,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114287718.1,"elapsed_ms":29915.099999999627,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114287749,"elapsed_ms":29946,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114288189,"elapsed_ms":30386,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114288370.5,"elapsed_ms":30567.5,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114288453.9,"elapsed_ms":30650.900000000373,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114288636.4,"elapsed_ms":30833.400000000373,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114288682,"elapsed_ms":30879,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114288711.1,"elapsed_ms":30908.099999999627,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114289462,"elapsed_ms":31659,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114289640.9,"elapsed_ms":31837.900000000373,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114291483.3,"elapsed_ms":33680.300000000745,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114291503,"elapsed_ms":33700,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114292050,"elapsed_ms":34247,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114292052.7,"elapsed_ms":34249.699999999255,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114293975.2,"elapsed_ms":36172.199999999255,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114294034.7,"elapsed_ms":36231.699999999255,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114294583.7,"elapsed_ms":36780.699999999255,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114294584.7,"elapsed_ms":36781.699999999255,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114296194.9,"elapsed_ms":38391.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114296430.9,"elapsed_ms":38627.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114296742.1,"elapsed_ms":38939.09999999963,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114297141.7,"elapsed_ms":39338.699999999255,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114297341.7,"elapsed_ms":39538.699999999255,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114297499.8,"elapsed_ms":39696.800000000745,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114297692,"elapsed_ms":39889,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114298232,"elapsed_ms":40429,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114298629.7,"elapsed_ms":40826.699999999255,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114299024,"elapsed_ms":41221,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114299420.6,"elapsed_ms":41617.59999999963,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114299866.6,"elapsed_ms":42063.59999999963,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114300116.3,"elapsed_ms":42313.300000000745,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114300259,"elapsed_ms":42456,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114300701,"elapsed_ms":42898,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114300821,"elapsed_ms":43018,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114301185,"elapsed_ms":43382,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114301296.2,"elapsed_ms":43493.199999999255,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114302252.1,"elapsed_ms":44449.09999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114302283,"elapsed_ms":44480,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114302783.1,"elapsed_ms":44980.09999999963,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114302820.1,"elapsed_ms":45017.09999999963,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114310334.7,"elapsed_ms":52531.699999999255,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114310426.4,"elapsed_ms":52623.40000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114310908.1,"elapsed_ms":53105.09999999963,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114310921,"elapsed_ms":53118,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114313112,"elapsed_ms":55309,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114313136,"elapsed_ms":55333,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114313666.5,"elapsed_ms":55863.5,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114313669.8,"elapsed_ms":55866.800000000745,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114315551,"elapsed_ms":57748,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114315946.1,"elapsed_ms":58143.09999999963,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114315995.1,"elapsed_ms":58192.09999999963,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114316227.2,"elapsed_ms":58424.199999999255,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114317333.6,"elapsed_ms":59530.59999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114317353,"elapsed_ms":59550,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114317883.6,"elapsed_ms":60080.59999999963,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114317884.7,"elapsed_ms":60081.699999999255,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114319307.1,"elapsed_ms":61504.09999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114319316.2,"elapsed_ms":61513.199999999255,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114319723,"elapsed_ms":61920,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114319841.6,"elapsed_ms":62038.59999999963,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114320450.2,"elapsed_ms":62647.199999999255,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114320633.5,"elapsed_ms":62830.5,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114320900,"elapsed_ms":63097,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114321085.9,"elapsed_ms":63282.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114321750.2,"elapsed_ms":63947.199999999255,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114322112,"elapsed_ms":64309,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114322181.9,"elapsed_ms":64378.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114322259,"elapsed_ms":64456,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114322844,"elapsed_ms":65041,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114322993.4,"elapsed_ms":65190.40000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114325258.3,"elapsed_ms":67455.30000000075,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114325437.4,"elapsed_ms":67634.40000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114326650.9,"elapsed_ms":68847.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114326683.6,"elapsed_ms":68880.59999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114327285.6,"elapsed_ms":69482.59999999963,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114327300,"elapsed_ms":69497,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114327891.7,"elapsed_ms":70088.69999999925,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114328037.3,"elapsed_ms":70234.30000000075,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114329643,"elapsed_ms":71840,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114329658.1,"elapsed_ms":71855.09999999963,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114332167,"elapsed_ms":74364,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114332168.7,"elapsed_ms":74365.69999999925,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114332269,"elapsed_ms":74466,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114332285,"elapsed_ms":74482,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114333684,"elapsed_ms":75881,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114333750.2,"elapsed_ms":75947.19999999925,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114335432.7,"elapsed_ms":77629.69999999925,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114335500.3,"elapsed_ms":77697.30000000075,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114338634,"elapsed_ms":80831,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114338775,"elapsed_ms":80972,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114339360,"elapsed_ms":81557,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114339491.8,"elapsed_ms":81688.80000000075,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114342842.2,"elapsed_ms":85039.19999999925,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114342942.2,"elapsed_ms":85139.19999999925,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114344293,"elapsed_ms":86490,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114344324.9,"elapsed_ms":86521.90000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114347267.9,"elapsed_ms":89464.90000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114347516.9,"elapsed_ms":89713.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowright","arrowup"]}
+{"epoch_ms":1792114350868.8,"elapsed_ms":93065.80000000075,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114350873.9,"elapsed_ms":93070.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114353268.7,"elapsed_ms":95465.69999999925,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114353269.8,"elapsed_ms":95466.80000000075,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114353858.9,"elapsed_ms":96055.90000000037,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114353895.5,"elapsed_ms":96092.5,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114356041.2,"elapsed_ms":98238.19999999925,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114356060.6,"elapsed_ms":98257.59999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114356466.9,"elapsed_ms":98663.90000000037,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114356508.4,"elapsed_ms":98705.40000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114356750.9,"elapsed_ms":98947.90000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114356837.1,"elapsed_ms":99034.09999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114356916.4,"elapsed_ms":99113.40000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114356961.9,"elapsed_ms":99158.90000000037,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114358151,"elapsed_ms":100348,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114358166.2,"elapsed_ms":100363.19999999925,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114358501.9,"elapsed_ms":100698.90000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114358524.8,"elapsed_ms":100721.80000000075,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114358803.9,"elapsed_ms":101000.90000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114358831.1,"elapsed_ms":101028.09999999963,"type":"keydown","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowleft","arrowup"]}
+{"epoch_ms":1792114358961.9,"elapsed_ms":101158.90000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":[" ","arrowup"]}
+{"epoch_ms":1792114358991.5,"elapsed_ms":101188.5,"type":"keyup","key":" ","code":"Space","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114359977,"elapsed_ms":102174,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114360458.9,"elapsed_ms":102655.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114360947.2,"elapsed_ms":103144.19999999925,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114361122.9,"elapsed_ms":103319.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114361534.3,"elapsed_ms":103731.30000000075,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114361660.9,"elapsed_ms":103857.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114361700,"elapsed_ms":103897,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114361938,"elapsed_ms":104135,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114362161.1,"elapsed_ms":104358.09999999963,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114362458.7,"elapsed_ms":104655.69999999925,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114362574.9,"elapsed_ms":104771.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114362730.7,"elapsed_ms":104927.69999999925,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114362993,"elapsed_ms":105190,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114363874.8,"elapsed_ms":106071.80000000075,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114364526.9,"elapsed_ms":106723.90000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114365028.4,"elapsed_ms":107225.40000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114365961.9,"elapsed_ms":108158.90000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114366787.9,"elapsed_ms":108984.90000000037,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114367834.1,"elapsed_ms":110031.09999999963,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114368475.3,"elapsed_ms":110672.30000000075,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114368786.2,"elapsed_ms":110983.19999999925,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114368978.9,"elapsed_ms":111175.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114369259.3,"elapsed_ms":111456.30000000075,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114369755,"elapsed_ms":111952,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114370544.9,"elapsed_ms":112741.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114371198.8,"elapsed_ms":113395.80000000075,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114372161.8,"elapsed_ms":114358.80000000075,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114372943.8,"elapsed_ms":115140.80000000075,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114373399.8,"elapsed_ms":115596.80000000075,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114373733.1,"elapsed_ms":115930.09999999963,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114373941.9,"elapsed_ms":116138.90000000037,"type":"keydown","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowleft","arrowup"]}
+{"epoch_ms":1792114374134.5,"elapsed_ms":116331.5,"type":"keyup","key":"arrowleft","code":"ArrowLeft","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114374720.9,"elapsed_ms":116917.90000000037,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114375300,"elapsed_ms":117497,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114375486,"elapsed_ms":117683,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114375627.6,"elapsed_ms":117824.59999999963,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114376449.3,"elapsed_ms":118646.30000000075,"type":"keydown","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowright","arrowup"]}
+{"epoch_ms":1792114377282.9,"elapsed_ms":119479.90000000037,"type":"keyup","key":"arrowright","code":"ArrowRight","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowup"]}
+{"epoch_ms":1792114377470.9,"elapsed_ms":119667.90000000037,"type":"keyup","key":"arrowup","code":"ArrowUp","source":"keyboard","synthetic":false,"reason":null,"keys_held":[]}
+{"epoch_ms":1792114377653.9,"elapsed_ms":119850.90000000037,"type":"keydown","key":"arrowdown","code":"ArrowDown","source":"keyboard","synthetic":false,"reason":null,"keys_held":["arrowdown"]}
+{"epoch_ms":1792114377807,"elapsed_ms":120004,"type":"stop","reason":"duration_limit","state":{"running":true,"simulation_time_s":260.6158000000393,"segment":0,"keys_held":["arrowdown"],"actions":{"accelerate":false,"brake_reverse":true,"steering":0,"handbrake":false},"car":{"x":-690.0061893544547,"y":1291.889052497973,"a":2.671143680417623,"vx":-4.8845995168330285,"vy":2.4928944969983595,"steer":0.007357779859115019,"model":"THE DAILY"},"camera":{"x":-691.7319557520647,"y":1293.59011464486,"zoom":0.875},"settings":{"traffic":true,"auto_accelerate":false},"viewport":{"width":1280,"height":665}}}
