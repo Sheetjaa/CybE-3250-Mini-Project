@@ -21,13 +21,29 @@ function recordingZip(files) {
 class DrivingRecorder {
  constructor(canvas,getState){
   this.canvas=canvas;this.getState=getState;this.active=false;this.saving=false;this.pending=null;
+  this.directoryHandle=null;
   this.button=document.getElementById('record');this.status=document.getElementById('record-status');this.intervalInput=document.getElementById('record-interval');
-  this.button.addEventListener('click',()=>{if(this.active)this.stop('manual');else if(this.saveFailed)this.export();else this.start()});
-  document.getElementById('record-download').addEventListener('click',()=>this.download());
+  this.button.addEventListener('click',()=>{if(this.active)this.stop('manual');else if(this.saveFailed){if(this.archive)this.saveExisting();else this.export()}else this.begin()});
+  document.getElementById('record-download').addEventListener('click',()=>this.saveExisting());
   addEventListener('beforeunload',e=>{if(this.active||this.saving||this.files?.length){e.preventDefault();e.returnValue=''}});
  }
  stamp(){const elapsed=performance.now()-this.origin;return {epoch_ms:this.epoch+elapsed,elapsed_ms:elapsed}}
  event(type,detail={}){if(this.active)this.events.push({...this.stamp(),type,...detail})}
+ async begin(){
+  if(this.saving)return;
+  if(!this.getState().running){this.status.textContent='Start driving before recording.';return}
+  const seconds=Number(this.intervalInput.value);
+  if(!Number.isFinite(seconds)||seconds<0.1||seconds>10){this.status.textContent='Choose an interval from 0.1 to 10 seconds.';return}
+  if(!this.directoryHandle&&typeof window.showDirectoryPicker==='function'){
+   this.status.textContent='Choose the recordings folder to save this session…';
+   try{this.directoryHandle=await window.showDirectoryPicker({mode:'readwrite'})}
+   catch(error){
+    this.status.textContent=error.name==='AbortError'?'Folder selection cancelled. Click Record drive to try again.':`Could not open the recordings folder: ${error.message}`;
+    return
+   }
+  }
+  this.start();
+ }
  start(){
   if(this.saving||this.saveFailed)return;
   if(!this.getState().running){this.status.textContent='Start driving before recording.';return}
@@ -66,7 +82,7 @@ class DrivingRecorder {
  }
  async stop(reason){
   if(!this.active)return;
-  this.event('stop',{reason,state:this.getState()});this.reason=reason;this.active=false;this.saving=true;this.button.disabled=true;this.status.textContent='Preparing download…';
+  this.event('stop',{reason,state:this.getState()});this.reason=reason;this.active=false;this.saving=true;this.button.disabled=true;this.status.textContent='Preparing recording…';
   await this.pending;
   await this.export();
  }
@@ -78,10 +94,28 @@ class DrivingRecorder {
    const jsonl=rows=>encode(rows.map(row=>JSON.stringify(row)+'\n').join(''));
    this.archive=recordingZip([...this.files,['session.json',encode(JSON.stringify(metadata,null,2))],['inputs.jsonl',jsonl(this.events)],['frames.jsonl',jsonl(this.frames)]]);
    this.files=[];this.saveFailed=false;document.getElementById('record-download').hidden=false;
-   this.status.textContent=`Ready: ${this.frames.length} frames (${this.reason}). Download again if needed.`;
-   try{this.download()}catch{this.status.textContent='Download blocked. Use Download again to save the ZIP.'}
+   await this.persistArchive();
   }catch(error){this.saveFailed=true;this.status.textContent=`Save failed: ${error.message}. Keep this page open and retry.`}
   finally{this.saving=false;this.button.disabled=false;this.button.textContent=this.saveFailed?'Retry save':'Record drive';this.intervalInput.disabled=!!this.saveFailed}
+ }
+ async saveExisting(){
+  if(!this.archive||this.saving)return;
+  this.saving=true;this.button.disabled=true;this.status.textContent='Saving recording…';
+  try{await this.persistArchive()}
+  catch(error){this.saveFailed=true;this.status.textContent=`Save failed: ${error.message}. Keep this page open and retry.`}
+  finally{this.saving=false;this.button.disabled=false;this.button.textContent=this.saveFailed?'Retry save':'Record drive';this.intervalInput.disabled=!!this.saveFailed}
+ }
+ async persistArchive(){
+  if(this.directoryHandle){
+   const filename=`drive-${this.epoch}.zip`;
+   const file=await this.directoryHandle.getFileHandle(filename,{create:true});
+   const writable=await file.createWritable();
+   try{await writable.write(this.archive);await writable.close()}
+   catch(error){await writable.abort();throw error}
+   this.saveFailed=false;this.status.textContent=`Saved ${filename} to ${this.directoryHandle.name}.`;
+   return
+  }
+  this.download();this.saveFailed=false;this.status.textContent='Recording downloaded. Use Save again if needed.';
  }
  download(){if(!this.archive)return;const url=URL.createObjectURL(this.archive),a=document.createElement('a');a.href=url;a.download=`drive-${this.epoch}.zip`;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000)}
 }

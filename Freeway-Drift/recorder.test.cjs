@@ -78,6 +78,28 @@ test('failed ZIP export keeps images and can be retried without duplicate entrie
  assert.equal(h.run('recorder.saveFailed'),false);assert.equal(h.run('recorder.files.length'),0);assert.ok(h.run('recorder.archive.size')>0);
 });
 
+test('recording saves its ZIP into the selected recordings folder',async()=>{
+ const h=setup();
+ h.run(`window.showDirectoryPicker=async()=>({
+  name:'recordings',
+  getFileHandle:async filename=>{
+   window.savedFilename=filename;
+   return {createWritable:async()=>({
+    write:async archive=>{window.savedArchiveSize=archive.size},
+    close:async()=>{},
+    abort:async()=>{}
+   })}
+  }
+ })`);
+ await h.run('recorder.begin()');
+ h.run('recorder.tick()');await h.finish();
+ await h.run("recorder.stop('manual')");
+ assert.equal(h.run('savedFilename'),`drive-${h.run('recorder.epoch')}.zip`);
+ assert.ok(h.run('savedArchiveSize')>0);
+ assert.match(h.run("document.getElementById('record-status').textContent"),/Saved .* to recordings/);
+ assert.equal(h.run('recorder.saveFailed'),false);
+});
+
 test('200 ms cadence captures 600 frames and stops at two minutes',async()=>{
  const h=setup();assert.equal(h.run('recorder.interval'),200);
  for(let t=0;t<120000;t+=200){h.time(t);h.run('recorder.tick()');await h.finish()}
