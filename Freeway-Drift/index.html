@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<canvas id="world" aria-label="Isometric city driving simulator"></canvas>
+<canvas id="world" tabindex="-1" aria-label="Isometric city driving simulator"></canvas>
 <div class="vignette"></div>
 <header><a class="brand" href="#" id="home" aria-label="Open driving menu"><span class="brand-icon">↗</span><span>FREEWAY<span class="brand-light">DRIFT</span></span></a><div class="header-right"><span class="live-dot"></span><span>FREE ROAM</span><button id="sound" class="icon-btn" title="Toggle engine sound" aria-label="Enable engine sound">♪<span class="sound-slash">／</span></button><button id="fullscreen" class="icon-btn" title="Fullscreen" aria-label="Enter fullscreen">⛶</button><button id="pause" class="icon-btn" title="Pause (Esc)" aria-label="Pause driving">Ⅱ</button></div></header>
 <main id="menu" class="menu">
@@ -32,6 +32,14 @@
  <div id="touch-controls"><button data-key="arrowleft" aria-label="Steer left">←</button><button data-key="arrowright" aria-label="Steer right">→</button><button data-key="s" aria-label="Brake or reverse">BRAKE</button><button data-key="w" aria-label="Accelerate">GAS</button></div>
 </div>
 <div id="toast" role="status"></div>
+<section class="recorder-panel" aria-label="Driving data recorder">
+ <label for="record-interval">Image interval (seconds)</label>
+ <input id="record-interval" type="number" min="0.1" max="10" step="0.1" value="0.2">
+ <button id="record" type="button">Record drive</button>
+ <button id="record-download" type="button" hidden>Download again</button>
+ <small id="record-status" role="status">Up to 2 minutes · images up to 960 × 540. Inputs are logged on every change.</small>
+</section>
+<script src="recorder.js"></script>
 <script src="game.js"></script>
 </body>
 </html>
