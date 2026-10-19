@@ -14,7 +14,6 @@ from torchvision import transforms
 DATA_ROOT = Path(__file__).resolve().parent / "recordings"
 
 LABEL_NAMES = [
-    "neutral",
     "left",
     "right",
     "accelerate",
@@ -35,8 +34,12 @@ def normalize_key(key):
 def determine_label(row):
     """Create a single target class from the frame metadata in the JSONL record.
 
-    Combined driving actions such as steering while accelerating or braking are
-    kept as distinct labels so the model can learn diagonal driving states.
+    The accelerate/brake classes are intentionally restricted to frames where that
+    action is the only input; mixed-action states such as steering while
+    accelerating are assigned to the dedicated combined labels instead.
+
+    Frames with no meaningful driving input are intentionally excluded so the
+    model is not trained on a neutral class.
     """
     keys = {normalize_key(k) for k in row.get("keys_held", [])}
     actions = row.get("actions", {})
@@ -55,11 +58,11 @@ def determine_label(row):
         return LABEL_TO_INDEX["left"]
     if right_turn:
         return LABEL_TO_INDEX["right"]
-    if accelerating:
+    if accelerating and not braking:
         return LABEL_TO_INDEX["accelerate"]
-    if braking:
+    if braking and not accelerating:
         return LABEL_TO_INDEX["brake"]
-    return LABEL_TO_INDEX["neutral"]
+    return None
 
 
 class DrivingKeypressDataset(Dataset):
@@ -88,7 +91,10 @@ class DrivingKeypressDataset(Dataset):
                     if not image_path.exists():
                         continue
 
-                    self.samples.append((str(image_path), determine_label(row)))
+                    label = determine_label(row)
+                    if label is None:
+                        continue
+                    self.samples.append((str(image_path), label))
 
         if not self.samples:
             raise ValueError(f"No image/JSON pairs were found in: {session_dirs}")
@@ -175,13 +181,14 @@ def build_dataloaders(batch_size=32, val_fraction=0.2):
     return train_loader, val_loader
 
 
-def compute_class_weights(loader, min_weight=0.5, max_weight=3.0):
+def compute_class_weights(loader, min_weight=0.5, max_weight=5.0):
     """Compute inverse-frequency class weights and clamp them to a safe range.
 
-    The updated data has a much lower imbalance than the original 4-session run,
-    but the rarest class is still around 46x less common than the most common one.
-    Using a wider upper bound keeps the minority classes informative without
-    letting the loss become unstable.
+    The expanded recording set is more balanced than the original 4-session run,
+    but the rarest class is still roughly 44x less common than the most common one.
+    A slightly higher upper bound keeps underrepresented steering states
+    informative while avoiding the extreme loss scaling that comes from raw
+    inverse-frequency weights.
     """
     counts = torch.zeros(len(LABEL_NAMES), dtype=torch.float32)
     for _, y in loader:
@@ -279,7 +286,7 @@ def train_keypress_classifier(
     learning_rate=1e-3,
     save_path="best_keypress_model.pt",
     min_weight=0.5,
-    max_weight=3.0,
+    max_weight=5.0,
 ):
     train_loader, val_loader = build_dataloaders(batch_size=batch_size)
     print_class_counts(train_loader, title="Training class counts")
@@ -329,13 +336,23 @@ def train_keypress_classifier(
             best_val_acc = val_acc
             best_state = {k: v.cpu().clone() for k, v in model.state_dict().items()}
 
+        cm = confusion_matrix(model, val_loader, device)
+        epoch_cm_path = f"keypress_confusion_matrix_epoch_{epoch}.png"
+        plot_confusion_matrix(
+            cm.cpu().numpy(),
+            labels=LABEL_NAMES,
+            title=f"Driving Keypress Confusion Matrix (Epoch {epoch})",
+            save_path=epoch_cm_path,
+        )
+        print(f"Saved confusion matrix for epoch {epoch} to {epoch_cm_path}")
+
     if best_state is not None:
         model.load_state_dict(best_state)
         torch.save({"model_state": best_state, "label_names": LABEL_NAMES}, save_path)
         print(f"Saved best model to {save_path} with validation accuracy {best_val_acc:.4f}")
 
     cm = confusion_matrix(model, val_loader, device)
-    print("Confusion matrix:")
+    print("Final confusion matrix:")
     print(cm)
     plot_confusion_matrix(
         cm.cpu().numpy(),
@@ -343,7 +360,7 @@ def train_keypress_classifier(
         title="Driving Keypress Confusion Matrix",
         save_path="keypress_confusion_matrix.png",
     )
-    print("Saved confusion matrix to keypress_confusion_matrix.png")
+    print("Saved final confusion matrix to keypress_confusion_matrix.png")
     return model, train_loader, val_loader
 
 
