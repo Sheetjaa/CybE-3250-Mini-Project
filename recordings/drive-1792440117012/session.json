@@ -1,0 +1,48 @@
+{
+  "schema_version": 1,
+  "started_epoch_ms": 1792440117012,
+  "interval_ms": 200,
+  "max_duration_ms": 120000,
+  "image_max_width": 960,
+  "image_max_height": 540,
+  "clock": "epoch_ms = session Date.now() + monotonic elapsed_ms",
+  "image_source": "world canvas only; excludes HTML HUD and minimap; scaled to fit image bounds without upscaling",
+  "initial_state": {
+    "running": true,
+    "simulation_time_s": 54.049999999999066,
+    "segment": 0,
+    "keys_held": [],
+    "actions": {
+      "accelerate": false,
+      "brake_reverse": false,
+      "steering": 0,
+      "handbrake": false
+    },
+    "car": {
+      "x": -716.5002519282418,
+      "y": -1191.524490623823,
+      "a": -9.903602697309323,
+      "vx": -104.09773254502515,
+      "vy": 54.23061664192593,
+      "steer": 0.00020573952240226072,
+      "model": "THE DAILY"
+    },
+    "camera": {
+      "x": -736.6112368440016,
+      "y": -1179.724020956483,
+      "zoom": 0.9
+    },
+    "settings": {
+      "traffic": true,
+      "auto_accelerate": false
+    },
+    "viewport": {
+      "width": 1280,
+      "height": 684
+    }
+  },
+  "frame_count": 600,
+  "skipped_captures": 0,
+  "stop_reason": "duration_limit",
+  "error": null
+}
