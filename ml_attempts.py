@@ -9,7 +9,7 @@ import torch
 from PIL import Image
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
-from torchvision import transforms
+from torchvision import models, transforms
 
 DATA_ROOT = Path(__file__).resolve().parent / "recordings"
 
@@ -117,45 +117,35 @@ class BetterKeyPressCNN(nn.Module):
         if num_classes is None:
             num_classes = len(LABEL_NAMES)
         self.num_classes = num_classes
-        self.net = nn.Sequential(
-            nn.Conv2d(3, 32, kernel_size=3, padding=1),
-            nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.Conv2d(32, 32, kernel_size=3, padding=1),
-            nn.BatchNorm2d(32),
-            nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.Conv2d(64, 64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64),
-            nn.ReLU(),
-            nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
-            nn.Conv2d(128, 128, kernel_size=3, padding=1),
-            nn.BatchNorm2d(128),
-            nn.ReLU(),
-            nn.AdaptiveAvgPool2d((1, 1)),
-            nn.Flatten(),
-            nn.Linear(128, 96),
-            nn.ReLU(),
-            nn.Dropout(0.4),
-            nn.Linear(96, num_classes),
-        )
+
+        weights = None
+        if hasattr(models, "ResNet18_Weights"):
+            weights = models.ResNet18_Weights.DEFAULT
+
+        self.net = models.resnet18(weights=weights)
+        in_features = self.net.fc.in_features
+        self.net.fc = nn.Linear(in_features, num_classes)
+        self.freeze_backbone()
+
+    def freeze_backbone(self):
+        for param in self.net.parameters():
+            param.requires_grad = False
+        for param in self.net.fc.parameters():
+            param.requires_grad = True
 
     def forward(self, X):
         return self.net(X)
 
 
-def make_transform(resize=(96, 96)):
-    """Resize and normalize images to match the lab image-classification pipeline."""
+def make_transform(resize=(128, 128)):
+    """Resize and normalize images for a pretrained ResNet-18 classifier."""
     return transforms.Compose([
         transforms.Resize(resize),
         transforms.ToTensor(),
-        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
+        transforms.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225),
+        ),
     ])
 
 

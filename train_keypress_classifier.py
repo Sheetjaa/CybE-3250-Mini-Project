@@ -22,7 +22,7 @@ import torch
 from PIL import Image
 from torch import nn
 from torch.utils.data import DataLoader, Dataset
-from torchvision import transforms
+from torchvision import models, transforms
 
 DATA_ROOT = Path(__file__).resolve().parent / "recordings"
 LABEL_NAMES = ["left", "right", "accelerate", "brake",
@@ -30,7 +30,7 @@ LABEL_NAMES = ["left", "right", "accelerate", "brake",
 LABEL_TO_INDEX = {name: idx for idx, name in enumerate(LABEL_NAMES)}
 INDEX_TO_LABEL = dict(enumerate(LABEL_NAMES))
 NUM_CLASSES = len(LABEL_NAMES)
-IMAGE_SIZE = (96, 96)
+IMAGE_SIZE = (128, 128)
 
 
 def seed_everything(seed):
@@ -43,6 +43,21 @@ def seed_everything(seed):
     # and software versions. Some GPU operations may still be nondeterministic.
     torch.backends.cudnn.benchmark = False
     torch.backends.cudnn.deterministic = True
+
+
+def choose_device():
+    if not torch.cuda.is_available():
+        return torch.device("cpu")
+
+    try:
+        free_memory_bytes = torch.cuda.mem_get_info()[0]
+        if free_memory_bytes < 800 * 1024 * 1024:
+            print("Low CUDA memory detected; falling back to CPU.")
+            return torch.device("cpu")
+    except Exception:
+        pass
+
+    return torch.device("cuda")
 
 
 def normalize_key(key):
@@ -124,24 +139,20 @@ class BetterKeyPressCNN(nn.Module):
     def __init__(self, num_classes=None):
         super().__init__()
         self.num_classes = NUM_CLASSES if num_classes is None else num_classes
-        self.net = nn.Sequential(
-            nn.Conv2d(3, 32, 3, padding=1),
-            nn.BatchNorm2d(32), nn.ReLU(),
-            nn.Conv2d(32, 32, 3, padding=1),
-            nn.BatchNorm2d(32), nn.ReLU(), nn.MaxPool2d(2),
-            nn.Conv2d(32, 64, 3, padding=1),
-            nn.BatchNorm2d(64), nn.ReLU(),
-            nn.Conv2d(64, 64, 3, padding=1),
-            nn.BatchNorm2d(64), nn.ReLU(), nn.MaxPool2d(2),
-            nn.Conv2d(64, 128, 3, padding=1),
-            nn.BatchNorm2d(128), nn.ReLU(),
-            nn.Conv2d(128, 128, 3, padding=1),
-            nn.BatchNorm2d(128), nn.ReLU(),
-            # Preserve coarse spatial information for driving decisions.
-            nn.AdaptiveAvgPool2d((3, 3)), nn.Flatten(),
-            nn.Linear(128 * 3 * 3, 96), nn.ReLU(),
-            nn.Dropout(0.4), nn.Linear(96, self.num_classes),
-        )
+
+        weights = None
+        if hasattr(models, "ResNet18_Weights"):
+            weights = models.ResNet18_Weights.DEFAULT
+
+        self.net = models.resnet18(weights=weights)
+        self.net.fc = nn.Linear(self.net.fc.in_features, self.num_classes)
+        self.freeze_backbone()
+
+    def freeze_backbone(self):
+        for param in self.net.parameters():
+            param.requires_grad = False
+        for param in self.net.fc.parameters():
+            param.requires_grad = True
 
     def forward(self, X):
         return self.net(X)  # Raw logits; CrossEntropyLoss handles log-softmax.
@@ -152,8 +163,13 @@ def make_transform(resize=IMAGE_SIZE, training=False):
     if training:
         steps.append(transforms.ColorJitter(brightness=0.10, contrast=0.10))
     # No flips: horizontal flips require swapping left/right class labels.
-    steps.extend([transforms.ToTensor(),
-                  transforms.Normalize((0.5,) * 3, (0.5,) * 3)])
+    steps.extend([
+        transforms.ToTensor(),
+        transforms.Normalize(
+            mean=(0.485, 0.456, 0.406),
+            std=(0.229, 0.224, 0.225),
+        ),
+    ])
     return transforms.Compose(steps)
 
 
@@ -292,7 +308,7 @@ def plot_confusion_matrix(cm, labels=None, title="Confusion Matrix",
 
 
 def train_keypress_classifier(
-    epochs=50, batch_size=32, learning_rate=1e-3,
+    epochs=50, batch_size=8, learning_rate=1e-3,
     save_path="best_keypress_model.pt", data_root=DATA_ROOT,
     val_fraction=0.2, seed=42, num_workers=0, patience=10,
     weight_decay=1e-4,
@@ -311,13 +327,18 @@ def train_keypress_classifier(
                       "covers only classes present; obtain broader validation "
                       "recordings to assess all six classes.")
 
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = choose_device()
     print("Device:", device)
     model = BetterKeyPressCNN().to(device)
+    # Freeze the pretrained backbone and train only the final classifier head.
+    model.freeze_backbone()
     weights = compute_class_weights(train_loader).to(device)
     criterion = nn.CrossEntropyLoss(weight=weights)
-    optimizer = torch.optim.AdamW(model.parameters(), lr=learning_rate,
-                                  weight_decay=weight_decay)
+    optimizer = torch.optim.AdamW(
+        filter(lambda p: p.requires_grad, model.parameters()),
+        lr=learning_rate,
+        weight_decay=weight_decay,
+    )
     scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(
         optimizer, mode="max", factor=0.5, patience=3,
         threshold=1e-4, threshold_mode="abs", min_lr=1e-6)
@@ -424,7 +445,7 @@ if __name__ == "__main__":
     parser.add_argument("--data-root", type=Path, default=DATA_ROOT)
     parser.add_argument("--save-path", type=Path, default=Path("best_keypress_model.pt"))
     parser.add_argument("--epochs", type=int, default=50)
-    parser.add_argument("--batch-size", type=int, default=32)
+    parser.add_argument("--batch-size", type=int, default=8)
     parser.add_argument("--learning-rate", type=float, default=1e-3)
     parser.add_argument("--val-fraction", type=float, default=0.2)
     parser.add_argument("--seed", type=int, default=42)
