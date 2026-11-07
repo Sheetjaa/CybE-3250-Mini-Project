@@ -1,3 +1,11 @@
+PYTHON VERSION
+Run: python game.py
+Bot: python game.py --bot
+Install: python -m pip install -r requirements.txt
+See PYTHON.md for full-world recording and the ML policy interface.
+
+LEGACY BROWSER INSTRUCTIONS (original files preserved):
+
 FREEWAY DRIFT — SOURCE CODE
 
 RUN THE GAME
@@ -6,7 +14,7 @@ RUN THE GAME
 3. Choose a car and select Take a drive.
 
 No installation, account, internet connection, build step, or dependencies are required.
-Keep index.html, style.css, game.js, and recorder.js together in the same folder.
+Keep index.html, style.css, game.js, recorder.js, and scene-labels.js together in the same folder.
 
 RECORDING A DRIVE
 1. Start driving, then click Record drive in the upper-right recorder panel.
@@ -47,3 +55,11 @@ Vehicle settings are in the cars array near the top of game.js.
 The city uses Canvas 2D and an isometric projection, with simplified arcade driving physics.
 This is an original driving sandbox inspired by the requested blocky-city style.
 It contains no police, coins, scores, missions, or timers.
+
+AUTOMATIC OBSTACLE LABELS
+Look ahead sets detection distance from the front bumper (default 140 world units).
+Show detection boxes toggles the overlay; saved images stay clean.
+Each frames.jsonl row has scene.labels.obstacle_left, obstacle_center and
+obstacle_right as independent booleans, plus car/obstacle positions and boxes.
+The zones are 40-unit-wide corridors relative to the car heading, not painted
+road lanes. Traffic and buildings are labeled. See README.md for full details.

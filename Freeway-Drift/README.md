@@ -1,3 +1,20 @@
+# Freeway Drift — Python version
+
+Run `python game.py` for manual play or `python game.py --bot` for the basic bot.
+Install dependencies with `python -m pip install -r requirements.txt`.
+
+The Python recorder saves the complete world on every simulation frame, with
+car-relative object positions and velocities. Screenshots use a separate cadence.
+See [PYTHON.md](PYTHON.md) for controls, the recording schema, headless mode and
+the ML policy interface in `bot.py`.
+
+The original browser implementation is preserved below for reference. Its
+recorder and schema differ from the Python version.
+
+---
+
+## Legacy browser documentation
+
 # Freeway Drift — driving demonstrations
 
 Open `index.html` in a desktop browser. Choose a car and settings, click **Take a drive**, then **Record drive** in the upper-right recorder panel. In browsers that support folder access (such as desktop Chrome or Edge), the first recording click asks you to choose a save folder. Select this project's `recordings` folder; each completed drive is saved there as its own `drive-<epoch_ms>.zip` file. The browser remembers the folder only until the page is reloaded. If folder access is unavailable, the ZIP downloads to the browser's normal download location. **Save again** retries saving the same ZIP. All processing stays in the browser; no installation or account is required.
@@ -38,3 +55,52 @@ Frames are buffered in memory until export. Recording automatically stops around
 ## Checks
 
 With Node.js installed, run `node --test recorder.test.cjs` from this folder. Tests exercise input-source overlap, timestamp alignment, asynchronous captures, pause/reset releases, capture failure, skipped cadence slots, export retry, the complete 600-frame two-minute boundary and image resizing. A real-browser check should additionally confirm PNG appearance and downloaded ZIP contents.
+
+
+## Automatic scene labels (schema version 2)
+
+Keep `scene-labels.js` alongside the other game files. Start driving, choose
+**Look ahead (world units)** (default 140, range 10–500), and click **Record drive**.
+**Show detection boxes** toggles the on-screen overlay. Green zones are clear;
+red zones are blocked, and orange rectangles mark relevant obstacles. The overlay
+is a separate canvas and never appears in saved PNGs.
+
+This city has no fixed three-lane highway. The labels describe three virtual,
+40-unit-wide corridors relative to the car's current heading: left, center,
+and right. Distance starts at the front bumper, even when reversing. A footprint
+must overlap a corridor with positive area to block it; merely touching an edge
+does not count. Turning rotates the corridors with the car. These are local scene
+occupancy labels, not steering commands or predictions of future collisions.
+
+Every `frames.jsonl` row now contains `scene`:
+
+```json
+{
+  "labels": {"obstacle_left": true, "obstacle_center": false, "obstacle_right": true},
+  "active_labels": ["obstacle_left", "obstacle_right"]
+}
+```
+
+The same `scene` object also includes `config`, `zones`, and `obstacles`. Each
+obstacle has a stable ID, type, world center (`x`, `y`), heading `a` in radians,
+length, width, height, car-relative center, overlapping `lanes`, and bounding boxes.
+`bbox_normalized` uses `[0,1]` image fractions with named `x_min`, `y_min`,
+`x_max`, `y_max` fields; `bbox_pixels` uses those fields in the saved PNG's pixel
+coordinates. Both are null for objects entirely outside the image. World units
+are the game's units, not calibrated meters. Car dimensions are saved in `car`.
+`scene.config` is captured per frame, so changing look-ahead distance is recorded.
+
+Obstacles include traffic (only when enabled) and buildings, the game's solid
+obstacles. Trees, street furniture and the map boundary are not labeled. Building
+positions use their rectangular footprint. Boxes are projected full object volumes,
+clipped to the image; they are not segmentation masks or occlusion-aware visible
+boxes. Labels describe game-state occupancy even if an obstacle is hidden by a
+building or outside the screenshot. Images, car pose, and obstacle state are taken
+from the same rendered frame before asynchronous PNG encoding.
+
+For scene classification, use the image as input and this fixed-order float target:
+`[scene.labels.obstacle_left, scene.labels.obstacle_center, scene.labels.obstacle_right]`.
+Use independent sigmoid outputs with `BCEWithLogitsLoss`, since multiple labels
+can be true at once. All-false means none of these three corridors is blocked.
+Existing `actions`, held keys and input logs remain available. Earlier recordings
+lack these new labels and need new captures or separate relabeling.
