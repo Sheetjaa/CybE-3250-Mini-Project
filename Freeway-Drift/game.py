@@ -2,6 +2,7 @@
 import argparse
 import importlib
 import math
+import secrets
 from pathlib import Path
 import sys
 import time
@@ -37,15 +38,19 @@ def arguments(argv=None):
     p.add_argument('--render', action='store_true', help='render PNGs even in headless mode')
     p.add_argument('--record', action='store_true', help='start recording immediately')
     p.add_argument('--recordings', type=Path, default=Path(__file__).parent/'recordings')
+    p.add_argument('--exclude-objects', default='',
+                   help='comma-separated object types to omit from recorded world objects, e.g. tree,lamp,bench')
     p.add_argument('--image-interval', type=float, default=.2, help='seconds between PNGs; 0 = every frame')
     p.add_argument('--max-record-seconds', type=float, default=120, help='simulation seconds; 0 = unlimited')
-    p.add_argument('--seed', type=int, default=8224)
+    p.add_argument('--seed', type=int, default=None, help='repeat a city seed; default: a new random city')
     p.add_argument('--car', type=int, choices=range(3), default=0)
     p.add_argument('--no-traffic', action='store_true')
     p.add_argument('--lookahead', type=float, default=140)
     p.add_argument('--width', type=int, default=1100)
     p.add_argument('--height', type=int, default=760)
     args = p.parse_args(argv)
+    if args.seed is None:
+        args.seed = secrets.randbits(32)
     if args.background:
         args.bot = args.headless = True
     if args.steps is None:
@@ -56,11 +61,13 @@ def arguments(argv=None):
         p.error('recording intervals must be finite and nonnegative')
     if not math.isfinite(args.lookahead) or not 10 <= args.lookahead <= 500:
         p.error('lookahead must be in [10, 500]')
+    args.exclude_objects = {value.strip() for value in args.exclude_objects.split(',') if value.strip()}
     return args
 
 
 def run(args):
     world = World(args.seed, args.car, not args.no_traffic, args.lookahead)
+    print(f'City seed: {world.seed}', flush=True)
     policy = load_policy(args.policy)
     bot = args.bot
     recorder = None
@@ -71,7 +78,8 @@ def run(args):
     reason = 'quit'
 
     def start_recording():
-        rec = DrivingRecorder(args.recordings, world.observe(), args.image_interval, args.max_record_seconds)
+        rec = DrivingRecorder(args.recordings, world.observe(), args.image_interval,
+                             args.max_record_seconds, args.exclude_objects)
         print(f'Recording: {rec.path}', flush=True)
         return rec
 
@@ -134,6 +142,16 @@ def run(args):
                             world.reset()
                             if recorder:
                                 recorder.event('reset', segment=world.segment)
+                        elif key == 'n':
+                            keys.clear()
+                            if recorder and not recorder.closed:
+                                recorder.event('release_all', reason='new_city')
+                                recorder.close('new_city', world.observe())
+                            segment = world.segment+1
+                            world = World(secrets.randbits(32), world.model_index,
+                                          world.traffic_on, world.lookahead)
+                            world.segment = segment
+                            print(f'City seed: {world.seed}', flush=True)
                         elif key == 'b':
                             bot = not bot
                             keys.clear()

@@ -26,12 +26,13 @@ The repository's existing `.venv` already has Pygame available. From the reposit
 | WASD / arrows | Accelerate, brake/reverse, steer |
 | Space | Handbrake |
 | R | Reset player; increment recording segment |
+| N | Generate a new city; close the active recording |
 | Escape | Pause/resume; pausing closes the active recording |
 | B | Switch between manual and bot control |
 | F9 | Start/stop recording |
 | T | Toggle traffic |
 | G | Toggle local occupancy zones |
-| 1 / 2 / 3 | Select Daily / Weekender / Explorer |
+| 1 / 2 / 3 | Select Ferrari / Weekender / Explorer |
 
 When the bot is enabled, it keeps driving and recording after you switch to
 another window or minimize the game. Manual driving still pauses and closes
@@ -40,9 +41,17 @@ Escape explicitly pauses either mode.
 The window includes an isometric city, three car physics profiles, traffic,
 building/boundary collisions, skid/impact effects, HUD and minimap. Browser touch
 controls, folder picker and engine audio are retained only in the legacy version.
-The Python city uses the same seeded map generator and driving equations, with
-fixed simulation steps and simultaneous traffic decisions. It is not a
-byte-for-byte replay engine for old browser sessions.
+The Python city uses a procedural street network with varied spacing, side
+streets, a perimeter ring and downtown, industrial, residential, commercial and
+park districts. All intersections are connected. The map size, pastel palette,
+isometric projection and fixed simulation steps are preserved. Traffic follows
+continuous central avenues; the demonstration bot keeps its central loop.
+It is not a byte-for-byte replay engine for old browser sessions.
+
+The CLI chooses a random city seed on each launch. Use `--seed 8224` (or the seed
+shown on the HUD) to reproduce a layout. `World()` remains deterministic by
+default for Python training code. R keeps the map; N replaces it and closes any
+active recording. Press F9 to begin a session in the new city.
 
 ## Recording every world frame
 
@@ -79,15 +88,32 @@ frames. Headless play runs as fast as possible.
 fountain, particle and skid, including objects behind the car or outside the
 image. Disabled traffic remains present with `active: false` and zero velocity.
 Road layout, park geometry and world bounds are included separately in `world`.
+`world.city` contains the generator version and seed, street coordinates, actual
+road rectangles with intersection endpoints, blocks and district centers.
+`world.roads.segments_field` points to `city.roads`; the old regular-grid
+`indices` field is replaced by this generated network. Terrain grip, drawing
+and the minimap all use the same road rectangles.
 Objects use stable IDs, world center coordinates, dimensions, heading, world
 velocity, `solid`, `active`, and:
 
+- `relative_position.x/y`: car-relative position, with X forward and Y right.
 - `relative_center.forward/right`: center relative to the controlled car.
 - `relative_velocity.forward/right`: object velocity minus player velocity,
   rotated into the player's axes; this is not a rotating-frame time derivative.
 - `relative_heading`: wrapped heading difference in radians.
 - `distance`: Euclidean center distance in world units.
 - `lanes`: positive-area overlap with left/center/right lookahead corridors.
+
+The player's `car.relative_position` is always `{"x": 0.0, "y": 0.0}`;
+`car.relative_heading` is zero. Every object, including every building and
+traffic car, has `relative_position` in that same frame. For example,
+`{"x": 100, "y": -20}` means 100 units ahead and 20 units to the left.
+These positions update when the car moves or turns. `relative_center` retains
+the same values under the names `forward` and `right` for existing policies.
+Use `relative_heading` for an object's orientation relative to the car.
+The ordinary `x`, `y`, and `a` fields retain world positions and headings for
+rendering, map reconstruction and replay. Recorded initial/final states and
+every frame include the new fields; existing recordings are unchanged.
 
 Footprint corners can be reconstructed from the center, heading and dimensions
 with `scene_labels.corners`; redundant corner coordinates are omitted from logs.

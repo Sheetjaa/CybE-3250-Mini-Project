@@ -5,7 +5,7 @@ import math
 CELL, ROAD, LIMIT = 310, 88, 1550
 DT = 1 / 60
 MODELS = [
-    dict(name='THE DAILY', color='#d6a44d', roof='#ebbd69', max=205, accel=100,
+    dict(name='FERRARI', style='ferrari', color='#dc171f', roof='#fa3439', max=205, accel=100,
          grip=7.8, turn=2.3, length=33, width=17),
     dict(name='THE WEEKENDER', color='#c9735e', roof='#e39678', max=270, accel=125,
          grip=5.3, turn=2.55, length=38, width=18),
@@ -16,10 +16,6 @@ MODELS = [
 
 def clamp(value, low, high):
     return max(low, min(high, value))
-
-
-def on_road(x, y):
-    return min(abs(x - round(x / CELL) * CELL), abs(y - round(y / CELL) * CELL)) < ROAD / 2
 
 
 @dataclass(frozen=True)
@@ -67,33 +63,11 @@ class World:
         return values[int(self.rnd() * len(values))]
 
     def generate(self):
-        for gx in range(-5, 5):
-            for gy in range(-5, 5):
-                x, y = gx * CELL + ROAD / 2 + 17, gy * CELL + ROAD / 2 + 17
-                if (gx == gy == 0) or self.rnd() < .18:
-                    for _ in range(8):
-                        self.trees.append(dict(id=f'tree_{len(self.trees)}', type='tree',
-                                               x=x+20+self.rnd()*150, y=y+20+self.rnd()*150,
-                                               size=12+self.rnd()*8))
-                    continue
-                for bx in range(2):
-                    for by in range(2):
-                        self.buildings.append(dict(id=f'building_{len(self.buildings)}',
-                            type='building', x=x+bx*98, y=y+by*98,
-                            length=60+self.rnd()*20, width=60+self.rnd()*20,
-                            height=16+self.rnd()*55,
-                            color=self.pick(['#d3c5aa', '#d3d5bf', '#c1c9b0', '#d9c9ad', '#c6bcad', '#e0d3b8']),
-                            roof=self.pick(['#e3dac4', '#e3dfca', '#d7d9c4', '#c6cbb9'])))
-                for i in range(3):
-                    self.trees.append(dict(id=f'tree_{len(self.trees)}', type='tree',
-                        x=x+i*68+5, y=y-8, size=11+self.rnd()*6))
-        for i in range(-5, 6):
-            for j in range(-5, 5):
-                for kind, x, y in [('lamp', i*CELL+55, j*CELL+125), ('bench', i*CELL-55, j*CELL+175)]:
-                    self.props.append(dict(id=f'{kind}_{i}_{j}', type=kind, x=x, y=y))
+        from city import generate_city
+        self.city, self.buildings, self.trees, self.props = generate_city(self)
         for i in range(25):
             self.traffic.append(dict(id=f'traffic_{i}', type='traffic', axis=i % 2,
-                dir=1 if i % 4 < 2 else -1, lane=(int(self.rnd()*9)-4)*CELL,
+                dir=1 if i % 4 < 2 else -1, lane=self.pick([-CELL, 0, CELL]),
                 pos=(self.rnd()*2-1)*LIMIT, speed=48+self.rnd()*35,
                 color=self.pick(['#d9bb79', '#8eaaa4', '#b9c1a9', '#bf8e7b', '#e5d8bf']), blocked=False))
 
@@ -112,9 +86,10 @@ class World:
     def collision(self, x, y, radius=12):
         if abs(x) > LIMIT+34 or abs(y) > LIMIT+34:
             return True
-        # Only neighboring blocks can contain a colliding building.
+        # Reject distant footprints, including the larger warehouse buildings.
         for b in self.buildings:
-            if abs(x-b['x']) > 100 or abs(y-b['y']) > 100:
+            if (x+radius < b['x'] or x-radius > b['x']+b['length'] or
+                    y+radius < b['y'] or y-radius > b['y']+b['width']):
                 continue
             nx, ny = clamp(x, b['x'], b['x']+b['length']), clamp(y, b['y'], b['y']+b['width'])
             if (x-nx)**2 + (y-ny)**2 < radius**2:
@@ -160,7 +135,8 @@ class World:
         p['a'] += p['steer']*m['turn']*clamp(abs(forward)/52, 0, 1)*(-1 if forward < -.5 else 1)*(1.25 if action.handbrake else 1)*dt
         c, s = math.cos(p['a']), math.sin(p['a'])
         f, side = p['vx']*c+p['vy']*s, -p['vx']*s+p['vy']*c
-        grass = not on_road(p['x'], p['y'])
+        from city import on_city_road
+        grass = not on_city_road(self.city, p['x'], p['y'])
         side *= math.exp(-(1 if action.handbrake else m['grip'])*dt)
         f *= math.exp(-(1.1 if action.handbrake else 1 if grass else .28)*dt)
         f = clamp(f, -65, m['max']*(.65 if grass else 1))
@@ -256,14 +232,18 @@ class World:
         return objects
 
     def observe(self):
+        from city import city_snapshot
         from scene_labels import label_scene
         p = dict(self.car, model=self.model['name'], length=self.model['length'], width=self.model['width'])
+        p.update(relative_position=dict(x=0.0, y=0.0),
+                 relative_center=dict(forward=0.0, right=0.0), relative_heading=0.0)
         scene = label_scene(p, self.objects(), self.lookahead)
         objects = scene.pop('objects')
         return dict(frame=self.frame, simulation_time_s=self.time, segment=self.segment,
             car=p, camera=dict(self.camera), collisions=self.collisions, rng_state=self.rng_state, scene=scene,
             settings=dict(traffic=self.traffic_on, model=self.model_index, seed=self.seed),
             world=dict(bounds=dict(x_min=-LIMIT-34, y_min=-LIMIT-34, x_max=LIMIT+34, y_max=LIMIT+34),
-                       roads=dict(cell_size=CELL, width=ROAD, indices=list(range(-5, 6))),
-                       park=dict(x=66, y=68, length=177, width=177, path_width=12),
+                       roads=dict(cell_size=CELL, width=ROAD, layout='generated', segments_field='city.roads'),
+                       city=city_snapshot(self.city),
+                       park=dict(self.city['blocks'][55], path_width=12),
                        objects=objects))

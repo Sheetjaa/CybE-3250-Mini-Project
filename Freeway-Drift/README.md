@@ -1,12 +1,45 @@
 # Freeway Drift — Python version
 
+See [the flowcharts and code guide](HOW_IT_WORKS.md) for how the game loop,
+city generation, driving, rendering, relative coordinates and recordings work.
+The main chart is also available as [Mermaid source](game-flow.mmd).
+
 Run `python game.py` for manual play or `python game.py --bot` for the basic bot.
 Install dependencies with `python -m pip install -r requirements.txt`.
 
+The default player car is a red Ferrari-inspired sports car with a low body,
+dark cockpit, alloy wheels and yellow nose badge. Press **1** to select it
+after switching cars. Its driving physics use the original default tuning.
+
+Each launch generates a fresh city with connected streets, varied block sizes,
+a perimeter road, downtown towers, industrial warehouses, homes, shops and parks.
+The map retains its original 3,100-unit span between outer streets and the same
+isometric pastel style. Press **N** for a new city, or **R** to reset the car
+on the current map. **N** closes any active recording; **F9** starts a new one.
+Use `python game.py --seed 8224` to revisit a particular city. The seed appears
+on the HUD and in the terminal, and the generated layout is saved in recordings.
+
+Buildings that obscure the player's car become translucent automatically and
+return to full opacity when the car clears them. The effect also appears in
+recorded screenshots; collision footprints and scene labels stay the same.
+
 The Python recorder saves the complete world on every simulation frame, with
 car-relative object positions and velocities. Screenshots use a separate cadence.
+In observations and recordings, `car.relative_position` is `(0, 0)` and every
+object's `relative_position` uses X forward and Y right from the car's center.
 See [PYTHON.md](PYTHON.md) for controls, the recording schema, headless mode and
 the ML policy interface in `bot.py`.
+
+The Pygame renderer caches road scenery in a viewport-sized surface with a
+128-pixel gutter, rebuilding it when the camera reaches the gutter. It sorts
+only visible objects and reuses HUD text and color shading. Complete world
+observations and recording labels still include off-screen objects.
+
+To measure performance on your machine, run `python benchmark.py --frames 600`.
+This includes observations, world rendering, bot decisions and physics, including
+initial cache creation; it excludes the display, HUD, recording and the
+interactive 60 FPS cap.
+Recording speed also depends on PNG encoding and disk throughput.
 
 The original browser implementation is preserved below for reference. Its
 recorder and schema differ from the Python version.

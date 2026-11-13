@@ -1,4 +1,3 @@
-"""Stream complete observations to disk instead of buffering whole sessions."""
 import gzip
 import json
 from pathlib import Path
@@ -11,9 +10,10 @@ def dump(value):
 
 
 class DrivingRecorder:
-    def __init__(self, root, initial, image_interval=.2, max_seconds=120):
+    def __init__(self, root, initial, image_interval=.2, max_seconds=120, exclude_types=None):
         if image_interval < 0 or max_seconds < 0:
             raise ValueError('recording intervals must be nonnegative')
+        self.exclude_types = set(exclude_types or ())
         self.path = Path(root) / f'drive-{time.time_ns()}-{uuid.uuid4().hex[:6]}'
         (self.path / 'frames').mkdir(parents=True)
         self.frames = gzip.open(self.path / 'frames.jsonl.gz', 'wt', encoding='utf-8', compresslevel=1)
@@ -30,8 +30,10 @@ class DrivingRecorder:
             state_cadence='every simulation frame, including frames without images',
             action_alignment='actions are chosen from this observation and applied to the next simulation step',
             coordinates='world units; radians; +forward along car heading; +right clockwise',
+            relative_position='car.relative_position is (0, 0); object.relative_position.x is forward and y is right from the car center, rotated with its heading; x/y outside relative_position remain world coordinates',
             velocity='relative_velocity = object world velocity minus player world velocity, rotated into player axes',
             objects='all objects including off-screen, decorative, effects and disabled traffic; center coordinates',
+            excluded_object_types=sorted(self.exclude_types),
             image_interval_s=image_interval, max_duration_s=max_seconds,
             clock='epoch_ms = started_epoch_ms + monotonic elapsed_ms; simulation_time_s is separate',
             initial_state=initial, completed=False)
@@ -59,8 +61,11 @@ class DrivingRecorder:
         if self.max_seconds and elapsed >= self.max_seconds-1e-9:
             self.close('duration_limit', observation)
             return False
+        world = dict(observation['world'])
+        world['objects'] = [obj for obj in observation['world']['objects']
+                            if obj.get('type') not in self.exclude_types]
         row = dict(observation, **self.stamp(), record_frame=self.count, actions=action.to_dict(),
-                   keys_held=sorted(keys), controller=controller, image=None)
+                   keys_held=sorted(keys), controller=controller, image=None, world=world)
         if surface is not None and observation['simulation_time_s']+1e-9 >= self.next_image:
             import pygame
             width, height = surface.get_size()

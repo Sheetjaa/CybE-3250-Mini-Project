@@ -38,8 +38,10 @@ def label_scene(player, objects, distance):
         dx, dy = o['x']-player['x'], o['y']-player['y']
         vx, vy = o.get('vx', 0), o.get('vy', 0)
         dvx, dvy = vx-player['vx'], vy-player['vy']
+        forward, right = dx*c+dy*s, -dx*s+dy*c
         o.update(vx=vx, vy=vy, active=o.get('active', True),
-                 relative_center=dict(forward=dx*c+dy*s, right=-dx*s+dy*c),
+                 relative_position=dict(x=forward, y=right),
+                 relative_center=dict(forward=forward, right=right),
                  relative_velocity=dict(forward=dvx*c+dvy*s, right=-dvx*s+dvy*c),
                  relative_heading=math.atan2(math.sin(o['a']-player['a']), math.cos(o['a']-player['a'])),
                  distance=math.hypot(dx, dy))

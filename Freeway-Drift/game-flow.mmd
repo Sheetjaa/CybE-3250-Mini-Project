@@ -1,0 +1,20 @@
+flowchart TD
+    A([Start game.py]) --> B[Read options and choose city seed]
+    B --> C[Generate world, load policy and initialize requested renderer and recorder]
+    C --> D{Frame limit reached?}
+    D -->|Yes| Z[Finalize recording and close Pygame]
+    D -->|No| E[Handle window events and keyboard commands if a window is open]
+    E --> F{Quit requested?}
+    F -->|Yes| Z
+    F -->|No| G[Observe current state and calculate relative positions and scene labels]
+    G --> H[Draw world if rendering is enabled]
+    H --> I{Paused?}
+    I -->|Yes| J[Display paused frame and HUD if a window is open]
+    J --> D
+    I -->|No| K[Choose action from keyboard or bot policy]
+    K --> L[Record current observation, action and due screenshot if recording is active]
+    L --> M[Display world and HUD if a window is open]
+    M --> N[Advance physics, traffic, effects and camera by one fixed step]
+    N --> O[Throttle background mode if enabled]
+    O --> D
+    Z --> Q([Exit])
